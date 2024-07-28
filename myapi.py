@@ -1,10 +1,22 @@
 from fastapi import FastAPI 
-
+from typing import Optional
 app=FastAPI()
 
 @app.get("/")
 def index():
     return {"name":"First"}
+# query parameters
+# /blogs?limit=20&published=true
+# Not define query parameters in this path(route) but this is accepted inside this function ..path parameters are those which are defind inside path(route)
+# limit , published are query parameter with their default values as 10 and true ..sort is the optional query parameter and sort default value is taken as None .......EG http://127.0.0.1:8000/blogs?limit=20&published=False
+
+@app.get('/blogs')
+def show(limit:int=10,published:bool=True,sort:Optional[int]=None):
+    if published:
+        return {f"{limit} published blogs"}
+    else:
+        return {f"{limit}blogs"}
+
 
 @app.get('/blogs/unpublished')
 def show():
