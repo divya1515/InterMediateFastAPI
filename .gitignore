@@ -1,1 +1,7 @@
 __pycache__
+
+blog-env
+blog/__pycache__
+.DS_Store
+.vscode
+.gitignore
